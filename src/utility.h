@@ -57,7 +57,7 @@ namespace visionary {
 
     inline void drawRectangle(std::vector<cv::Rect>::iterator it, IplImage *image, CvScalar scalarColor) {
 
-        cv::Rect rec = *it;
+        cv::Rect rect = *it;
 
         CvPoint point1;
         point1.x = rect.x;

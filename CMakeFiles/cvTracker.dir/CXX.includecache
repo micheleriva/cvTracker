@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/micheleriva/CLionProjects/cvTracker/main.cpp
+stdio.h
+/Users/micheleriva/CLionProjects/cvTracker/stdio.h
+src/motion-detector.h
+/Users/micheleriva/CLionProjects/cvTracker/src/motion-detector.h
+opencv2/opencv.hpp
+/Users/micheleriva/CLionProjects/cvTracker/opencv2/opencv.hpp
+
+/Users/micheleriva/CLionProjects/cvTracker/src/constants.h
+
+/Users/micheleriva/CLionProjects/cvTracker/src/motion-detector-internal.h
+opencv2/opencv.hpp
+/Users/micheleriva/CLionProjects/cvTracker/src/opencv2/opencv.hpp
+
+/Users/micheleriva/CLionProjects/cvTracker/src/motion-detector.h
+opencv2/opencv.hpp
+/Users/micheleriva/CLionProjects/cvTracker/src/opencv2/opencv.hpp
+motion-detector-internal.h
+/Users/micheleriva/CLionProjects/cvTracker/src/motion-detector-internal.h
+utility.h
+/Users/micheleriva/CLionProjects/cvTracker/src/utility.h
+constants.h
+/Users/micheleriva/CLionProjects/cvTracker/src/constants.h
+string
+-
+
+/Users/micheleriva/CLionProjects/cvTracker/src/utility.h
+opencv2/opencv.hpp
+/Users/micheleriva/CLionProjects/cvTracker/src/opencv2/opencv.hpp
+thread
+-
+stdio.h
+-
+direct.h
+-
+unistd.h
+-
+

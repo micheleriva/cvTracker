@@ -1,0 +1,3 @@
+/Users/micheleriva/CLionProjects/cvTracker/CMakeFiles/rebuild_cache.dir
+/Users/micheleriva/CLionProjects/cvTracker/CMakeFiles/edit_cache.dir
+/Users/micheleriva/CLionProjects/cvTracker/CMakeFiles/cvTracker.dir
