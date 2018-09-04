@@ -61,13 +61,13 @@ namespace visionary {
 
         CvPoint point1;
         point1.x = rect.x;
-        point2.y = rect.y;
+        point1.y = rect.y;
 
         CvPoint point2;
         point2.x = rect.x;
         point2.y = rect.y;
 
-        cvRectangle(image,  point1, point2, scalarColor, 2):
+        cvRectangle(image,  point1, point2, scalarColor, 2);
     }
 
     inline void setCaptureFrame(CvCapture *capture, double width, double height) {

@@ -9,23 +9,24 @@
 
 class MotionDetector {
 
-    public:
-        inline MotionDetector();
-        inline MotionDetector(const char * videoPath, int ceil);
-        inline MotionDetector(int ceil);
-        virtual inline ~MotionDetector();
+public:
+    inline MotionDetector();
+    inline MotionDetector(const char * videoPath, int ceil);
+    inline MotionDetector(int ceil);
+    virtual inline ~MotionDetector();
 
-        inline void setVideoPath(const char * videoPath);
-        inline void setCeil(int ceil);
-        inline const char * getVideoPath();
-        inline int getCeil();
-        inline void CvCapture * getCapture();
-        inline void run();
+    inline void setVideoPath(const char * videoPath);
+    inline void setCeil(int ceil);
+    inline const char * getVideoPath();
+    inline int getCeil();
+    inline void openCamera();
+    inline CvCapture * getCapture();
+    inline void run();
 
-    private:
-        const char *videoPath = nullptr;
-        int ceil = 0;
-        CvCapture *capture = nullptr;
+private:
+    const char *videoPath = nullptr;
+    int ceil = 0;
+    CvCapture *capture = nullptr;
 
 };
 
@@ -42,7 +43,20 @@ inline MotionDetector::MotionDetector(int ceil) {
     this->ceil = ceil;
 }
 
-inline const char MotionDetector::getVideoPath() {
+inline MotionDetector::~MotionDetector() {
+    cvReleaseCapture(&capture);
+    cvDestroyAllWindows();
+}
+
+inline void MotionDetector::setVideoPath(const char * videoPath) {
+    this->videoPath = videoPath;
+}
+
+inline void MotionDetector::setCeil(int ceil) {
+    this->ceil = ceil;
+}
+
+inline const char * MotionDetector::getVideoPath() {
     return videoPath;
 }
 
@@ -65,10 +79,10 @@ inline CvCapture * createCapture(const char * videoPath) {
 
 inline void MotionDetector::run() {
 
-    IplImage *frame = cvQueryFrame(this->captrue);
+    IplImage *frame = cvQueryFrame(this->capture);
 
-    if(!frame) {
-        std::cout << "Could not capture from frame!" << std::endl;
+    if (!frame) {
+        std::cout << "Could not capture frame!" << std::endl;
         exit(EXIT_FAILURE);
     }
 
@@ -84,12 +98,14 @@ inline void MotionDetector::run() {
     CvScalar green = cvScalar(0.0, 255.0, 0.0);
 
     while (true) {
+
         IplImage *colorImage = cvQueryFrame(this->capture);
         cvSmooth(colorImage, colorImage, CV_GAUSSIAN, 3, 0);
+        IplImage *temp;
 
-        if(difference == nullptr) {
+        if (difference == nullptr) {
             difference = cvCloneImage(colorImage);
-            temp = cvClone(colorImage);
+            temp = cvCloneImage(colorImage);
             cvConvertScale(colorImage, movingAverage, 1.0, 0.0);
         } else {
             cvRunningAvg(colorImage, movingAverage, 0.020, NULL);
@@ -112,13 +128,11 @@ inline void MotionDetector::run() {
         }
 
         int average = (currentSurface * 100) / surface;
-
         if (average > this->ceil) {
             std::cout << "Something is moving..." << std::endl;
         }
 
         currentSurface = 0;
-
         cvShowImage(window::kTarget.c_str(), colorImage);
 
         int c = cvWaitKey(1);
@@ -126,6 +140,7 @@ inline void MotionDetector::run() {
         if (c == 27) {
             break;
         }
+
     }
 
     cvReleaseImage(&greyImage);
@@ -134,7 +149,6 @@ inline void MotionDetector::run() {
     if (difference) {
         cvReleaseImage(&difference);
     }
-
 }
 
 #endif //CVTRACKER_MOTION_DETECTOR_H

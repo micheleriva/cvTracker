@@ -2,7 +2,7 @@
 #define CVTRACKER_CONSTANTS_H
 
 namespace window {
-    const std::string kTracker = "Target";
+    const std::string kTarget = "Target";
 }
 
 namespace source {
