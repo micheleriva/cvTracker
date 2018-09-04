@@ -25,6 +25,7 @@
 .idea/**/dbnavigator.xml
 
 .idea
+CMakeFiles
 
 # Gradle
 .idea/**/gradle.xml
