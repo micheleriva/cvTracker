@@ -53,4 +53,27 @@ namespace utility {
     }
 }
 
+namespace visionary {
+
+    inline void drawRectangle(std::vector<cv::Rect>::iterator it, IplImage *image, CvScalar scalarColor) {
+
+        cv::Rect rec = *it;
+
+        CvPoint point1;
+        point1.x = rect.x;
+        point2.y = rect.y;
+
+        CvPoint point2;
+        point2.x = rect.x;
+        point2.y = rect.y;
+
+        cvRectangle(image,  point1, point2, scalarColor, 2):
+    }
+
+    inline void setCaptureFrame(CvCapture *capture, double width, double height) {
+        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, width);
+        cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, height);
+    }
+}
+
 #endif //CVTRACKER_UTILITY_H
